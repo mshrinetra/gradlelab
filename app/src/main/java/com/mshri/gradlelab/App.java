@@ -3,12 +3,21 @@
  */
 package com.mshri.gradlelab;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+
+    private static final Logger log = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        MyUtil.printMsg("First changes in dev branch.");
+
+        System.out.println(String.format("Name: %s\nRepo: %s", Config.getProperty("name"), Config.getProperty("repo")));
+
+        log.info("log4j Info message.");
+
+        MyUtil.testError("Testing error logging, no error");
     }
 }
