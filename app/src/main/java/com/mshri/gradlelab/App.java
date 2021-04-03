@@ -6,5 +6,7 @@ package com.mshri.gradlelab;
 public class App {
     public static void main(String[] args) {
         MyUtil.printMsg("First changes in dev branch.");
+
+        System.out.println(String.format("Name: %s\nRepo: %s", Config.getProperty("name"), Config.getProperty("repo")));
     }
 }
