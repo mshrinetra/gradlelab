@@ -11,6 +11,7 @@ public class Config {
 
     static{
         try {
+            System.out.println(Config.class.getClassLoader());
             inputStream = Config.class.getClassLoader().getResourceAsStream(propFileName);
 
             if (inputStream != null) {
