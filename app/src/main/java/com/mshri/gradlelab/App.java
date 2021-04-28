@@ -18,8 +18,41 @@ public class App {
     private static final Logger log = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
-        MyUtil.printMsg("First changes in dev branch.");
+        log.info("App started");
+        log.info("Testing exception...");
+        testException();
+    }
 
+    public static void testException(){
+        try {
+            int k = 5;
+            log.info("Calling tryException with " + Integer.toString(k));
+            // int x = MyUtil.tryException(k);
+            // log.info("tryException returned " + Integer.toString(x));
+            String s = MyUtil.tryException(k);
+            log.info("tryException returned " + s);
+            int y = s.length();
+            log.info("Value of Y is " + Integer.toString(y));
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
+
+
+    public static void testLogging(){
+        log.info("log4j Info message.");
+    }
+
+    public static void testingErrorLogging(){
+        MyUtil.testError("Testing error logging, no error");
+    }
+
+    public static void testProps(){
+        System.out.println(String.format("Name: %s\nRepo: %s", Config.getProperty("name"), Config.getProperty("repo")));
+        System.out.println(String.format("Env: %s", Config.getProperty("env")));
+    }
+
+    public static void tesMail(){
         try {
             MyUtil.sendEmail("Test simple java mail", "Hello!", false, "mshrinetra@outlook.com, imsakshisingh26@gmail.com; crazymanvendra@gmail.com;", null, null, null, null);
     
@@ -33,16 +66,10 @@ public class App {
             embedObjs.add(new MailEmbedObject("test-embed-img-three","C:\\Users\\mshri\\SandBox\\gradlelab\\devref\\three.jpeg"));
 
             MyUtil.sendEmail("Test embed java mail", mailTemplate, true, "mshrinetra@outlook.com", "imsakshisingh26@gmail.com; crazymanvendra@gmail.com;", null, embedObjs, "C:\\Users\\mshri\\SandBox\\gradlelab\\devref\\10000 Records.csv;C:\\Users\\mshri\\SandBox\\gradlelab\\devref\\10000 Records.prn");
+            br.close();
 
         } catch (Exception e) {
             System.out.println("Error in sending mail");
         }
-
-        System.out.println(String.format("Name: %s\nRepo: %s", Config.getProperty("name"), Config.getProperty("repo")));
-        System.out.println(String.format("Env: %s", Config.getProperty("env")));
-
-        log.info("log4j Info message.");
-
-        MyUtil.testError("Testing error logging, no error");
     }
 }

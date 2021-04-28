@@ -46,6 +46,18 @@ public class MyUtil {
         }
     }
 
+    public static String tryException (int a) throws Exception{
+        int p = 0;
+        String fStr = null;
+        try {
+            p = a/0;
+            fStr = "In function " + Integer.toString(p);
+        } catch (Exception e) {
+            throw new Exception("Cannot devide " + Integer.toString(a) + " by 0");
+        }
+        return fStr;
+    }
+
     public static void sendEmail(String subject, String msg, boolean isHtml, String to, String cc, String bcc, List<MailEmbedObject> embedObjs, String attachment) {
         try {
             // Set mail properties
